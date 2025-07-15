@@ -27,16 +27,12 @@ export default function Header({ scrollY, introComplete }: HeaderProps) {
     <header className="fixed top-0 z-40 w-full">
       <div
         className="backdrop-blur-2xl bg-black/20 border-b border-white/5"
-        style={{
-          background: `linear-gradient(135deg, rgba(0,0,0,${0.3 + scrollY * 0.001}) 0%, rgba(0,0,0,${0.1 + scrollY * 0.0005}) 100%)`,
-        }}
       >
         <div className="container mx-auto px-4 lg:px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group relative">
             <div
               className="relative transition-transform duration-500 ease-out"
-              style={{ transform: `rotate(${scrollY * 0.1}deg)` }}
             >
               <Camera
                 className={`text-white group-hover:scale-110 transition-transform duration-300 ${
@@ -70,7 +66,6 @@ export default function Header({ scrollY, introComplete }: HeaderProps) {
                 className="text-sm font-medium tracking-[0.2em] hover:text-gray-300 transition-all duration-300 relative group overflow-hidden"
                 style={{
                   animationDelay: `${index * 100}ms`,
-                  transform: `translateY(${scrollY * 0.01}px)`,
                 }}
               >
                 <span className="relative z-10">{item}</span>

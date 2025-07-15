@@ -5,11 +5,8 @@ import { Camera, Instagram, Linkedin, Mail, Phone, ShoppingBag } from "lucide-re
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
-interface FooterProps {
-  scrollY: number
-}
 
-export default function Footer({ scrollY }: FooterProps) {
+export default function Footer() {
   return (
     <footer id="contatti" className="py-20 border-t border-white/10 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">

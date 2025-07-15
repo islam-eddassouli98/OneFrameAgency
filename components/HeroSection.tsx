@@ -11,7 +11,7 @@ interface HeroSectionProps {
   introComplete: boolean
 }
 
-const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mousePosition, introComplete }, ref) => {
+const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mousePosition }, ref) => {
   return (
     <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Badge */}

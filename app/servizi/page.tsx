@@ -4,8 +4,7 @@ import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Camera, Mail, Bell, CheckCircle, Menu, X } from "lucide-react"
-import Link from "next/link"
+import { Camera, Mail, Bell, CheckCircle } from "lucide-react"
 import { useState } from "react"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
@@ -13,7 +12,8 @@ import Header from "@/components/Header"
 export default function ServiziPage() {
   const [email, setEmail] = useState("")
   const [isSubscribed, setIsSubscribed] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrollY] = useState(0)
+
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -128,7 +128,7 @@ export default function ServiziPage() {
       </section>
 
       {/* Footer */}
-      <Footer scrollY={scrollY} />
+      <Footer  />
 
       {/* CSS Animation */}
       <style jsx>{`

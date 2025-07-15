@@ -14,10 +14,7 @@ import {
   Clock,
   Monitor,
   Truck,
-  Menu,
-  X,
 } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState, useRef } from "react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
@@ -29,7 +26,8 @@ export default function ProcessoPage() {
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({})
   const [activeStep, setActiveStep] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+
   const timelineRef = useRef<HTMLDivElement>(null)
 
   const processSteps = [
@@ -120,13 +118,14 @@ export default function ProcessoPage() {
       color: "from-red-500/20 to-rose-500/20",
     },
   ]
-
   useEffect(() => {
-    // Check if mobile
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      const width = window.innerWidth
+      const height = window.innerHeight
+      setIsMobile(width < 768)
+      setWindowSize({ width, height })
     }
-
+  
     checkMobile()
     window.addEventListener("resize", checkMobile)
 
@@ -203,6 +202,9 @@ export default function ProcessoPage() {
     return `translate(${mousePosition.x * xFactor}px, ${mousePosition.y * yFactor}px)`
   }
 
+
+  
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Advanced Cursor - Desktop Only */}
@@ -210,8 +212,8 @@ export default function ProcessoPage() {
         <div
           className="fixed w-6 h-6 md:w-8 md:h-8 pointer-events-none z-50 transition-all duration-300 ease-out"
           style={{
-            left: mousePosition.x * 15 + window.innerWidth / 2 - 12,
-            top: mousePosition.y * 15 + window.innerHeight / 2 - 12,
+            left: mousePosition.x * 15 + windowSize.width / 2 - 12,
+            top: mousePosition.y * 15 + windowSize.height / 2 - 12,
             background: `radial-gradient(circle, rgba(255,255,255,${0.4 + Math.abs(mousePosition.x) * 0.2}) 0%, transparent 70%)`,
             transform: `scale(${1 + Math.abs(mousePosition.x) * 0.2})`,
             borderRadius: "50%",
@@ -694,7 +696,7 @@ export default function ProcessoPage() {
       </section>
 
       {/* Footer */}
-      <Footer scrollY={scrollY} />
+      <Footer  />
     </div>
   )
 }

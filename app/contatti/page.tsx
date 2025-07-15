@@ -15,13 +15,9 @@ import {
   Clock,
   Send,
   CheckCircle,
-  Instagram,
-  Linkedin,
   MessageCircle,
   Zap,
   Users,
-  Menu,
-  X,
   Star,
   Heart,
   Sparkles,
@@ -30,7 +26,6 @@ import {
   Headphones,
   Shield,
 } from "lucide-react"
-import Link from "next/link"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { useEffect, useState } from "react"
@@ -40,7 +35,6 @@ export default function ContattiPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({})
   const [isMobile, setIsMobile] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [typedText, setTypedText] = useState("")
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [formData, setFormData] = useState({
@@ -54,6 +48,8 @@ export default function ContattiPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [mounted, setMounted] = useState(false)
 
   const typingTexts = [
     "Trasformiamo i tuoi prodotti in bestseller",
@@ -146,12 +142,23 @@ export default function ContattiPage() {
   ]
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+    // Marca il componente come montato
+    setMounted(true)
 
+    const checkMobile = () => {
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth
+        const height = window.innerHeight
+        setIsMobile(width < 768)
+        setWindowSize({ width, height })
+      }
+    }
+  
     checkMobile()
-    window.addEventListener("resize", checkMobile)
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener("resize", checkMobile)
+    }
 
     // Typing animation
     const typingInterval = setInterval(() => {
@@ -167,58 +174,68 @@ export default function ContattiPage() {
     }, 100)
 
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      if (typeof window !== 'undefined') {
+        setScrollY(window.scrollY)
+      }
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isMobile) {
+      if (!isMobile && typeof window !== 'undefined') {
         setMousePosition({
-          x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
-          y: (e.clientY - window.innerHeight / 2) / window.innerHeight,
+          x: (e.clientX - windowSize.width / 2) / windowSize.width,
+          y: (e.clientY - windowSize.height / 2) / windowSize.height,
         })
       }
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }))
-          }
-        })
-      },
-      {
-        threshold: isMobile ? 0.05 : 0.1,
-        rootMargin: isMobile ? "50px" : "100px",
-      },
-    )
+    let observer: IntersectionObserver | null = null
+    
+    if (typeof window !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }))
+            }
+          })
+        },
+        {
+          threshold: isMobile ? 0.05 : 0.1,
+          rootMargin: isMobile ? "50px" : "100px",
+        },
+      )
 
-    const elementsToObserve = document.querySelectorAll("[data-reveal]")
-    elementsToObserve.forEach((el) => {
-      if (el.id) observer.observe(el)
-    })
+      const elementsToObserve = document.querySelectorAll("[data-reveal]")
+      elementsToObserve.forEach((el) => {
+        if (el.id && observer) observer.observe(el)
+      })
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    if (!isMobile) {
-      window.addEventListener("mousemove", handleMouseMove, { passive: true })
+      window.addEventListener("scroll", handleScroll, { passive: true })
+      if (!isMobile) {
+        window.addEventListener("mousemove", handleMouseMove, { passive: true })
+      }
     }
 
     return () => {
       clearInterval(typingInterval)
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("resize", checkMobile)
-      observer.disconnect()
+      if (typeof window !== 'undefined') {
+        window.removeEventListener("scroll", handleScroll)
+        window.removeEventListener("mousemove", handleMouseMove)
+        window.removeEventListener("resize", checkMobile)
+      }
+      if (observer) {
+        observer.disconnect()
+      }
     }
-  }, [typedText, currentTextIndex, isMobile])
+  }, [typedText, currentTextIndex, isMobile, windowSize.width, windowSize.height])
 
   const getParallaxTransform = (factor: number, index = 0) => {
-    if (isMobile) return "translateY(0px)"
+    if (isMobile || !mounted) return "translateY(0px)"
     return `translateY(${scrollY * factor * (index + 1)}px)`
   }
 
   const getMouseTransform = (xFactor = 0, yFactor = 0) => {
-    if (isMobile) return "translate(0px, 0px)"
+    if (isMobile || !mounted) return "translate(0px, 0px)"
     return `translate(${mousePosition.x * xFactor}px, ${mousePosition.y * yFactor}px)`
   }
 
@@ -253,18 +270,62 @@ export default function ContattiPage() {
     }, 3000)
   }
 
+  const handleScrollToForm = () => {
+    if (typeof window !== 'undefined') {
+      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })
+    }
+  }
 
+  const handlePhoneCall = () => {
+    if (typeof window !== 'undefined') {
+      window.open("tel:+393341960682")
+    }
+  }
+
+  const handleEmailClick = () => {
+    if (typeof window !== 'undefined') {
+      window.open("mailto:info@oneframeagency.com")
+    }
+  }
+
+  const handleWhatsappClick = () => {
+    if (typeof window !== 'undefined') {
+      window.open("https://wa.me/393341960682")
+    }
+  }
+
+  const handleContactClick = (href: string) => {
+    if (typeof window !== 'undefined') {
+      window.open(href)
+    }
+  }
+
+  // Non renderizzare animazioni complesse fino a quando il componente non è montato
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-black text-white overflow-x-hidden">
+        <Header scrollY={0} introComplete={true} />
+        <div className="flex items-center justify-center h-screen">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-black text-white mb-4">CONTATTACI</h1>
+            <p className="text-gray-400">Caricamento...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Advanced Cursor with Trail Effect */}
-      {!isMobile && (
+      {!isMobile && mounted && (
         <>
           <div
             className="fixed w-8 h-8 pointer-events-none z-50 transition-all duration-300 ease-out"
             style={{
-              left: mousePosition.x * 15 + window.innerWidth / 2 - 16,
-              top: mousePosition.y * 15 + window.innerHeight / 2 - 16,
+              left: mousePosition.x * 15 + windowSize.width / 2 - 12,
+              top: mousePosition.y * 15 + windowSize.height / 2 - 12,
               background: `radial-gradient(circle, rgba(255,255,255,${0.6 + Math.abs(mousePosition.x) * 0.4}) 0%, transparent 70%)`,
               transform: `scale(${1 + Math.abs(mousePosition.x) * 0.3})`,
               borderRadius: "50%",
@@ -277,8 +338,8 @@ export default function ContattiPage() {
               key={i}
               className="fixed w-4 h-4 pointer-events-none z-40 transition-all duration-500 ease-out"
               style={{
-                left: mousePosition.x * (10 - i * 2) + window.innerWidth / 2 - 8,
-                top: mousePosition.y * (10 - i * 2) + window.innerHeight / 2 - 8,
+                left: mousePosition.x * (10 - i * 2) + windowSize.width / 2 - 8,
+                top: mousePosition.y * (10 - i * 2) + windowSize.height / 2 - 8,
                 background: `radial-gradient(circle, rgba(255,255,255,${0.2 - i * 0.05}) 0%, transparent 70%)`,
                 borderRadius: "50%",
                 filter: "blur(2px)",
@@ -290,7 +351,7 @@ export default function ContattiPage() {
       )}
 
       {/* Enhanced Floating Particles */}
-      {!isMobile && (
+      {!isMobile && mounted && (
         <div className="fixed inset-0 pointer-events-none z-10">
           {[...Array(20)].map((_, i) => (
             <div
@@ -332,7 +393,7 @@ export default function ContattiPage() {
           />
 
           {/* Multiple Animated Orbs */}
-          {!isMobile && (
+          {!isMobile && mounted && (
             <>
               <div
                 className="absolute top-1/4 left-1/3 w-96 h-96 rounded-full opacity-15"
@@ -475,7 +536,7 @@ export default function ContattiPage() {
               style={{
                 boxShadow: `0 10px 40px rgba(255,255,255,${0.2 + Math.abs(mousePosition.x) * 0.1})`,
               }}
-              onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={handleScrollToForm}
             >
               <span className="relative z-10 flex items-center justify-center">
                 <Send className="mr-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -490,7 +551,7 @@ export default function ContattiPage() {
               style={{
                 boxShadow: `0 10px 40px rgba(255,255,255,${0.1 + Math.abs(mousePosition.y) * 0.1})`,
               }}
-              onClick={() => window.open("tel:+393341960682")}
+              onClick={handlePhoneCall}
             >
               <span className="relative z-10 flex items-center justify-center">
                 <Phone className="mr-2 h-4 w-4 md:h-5 md:w-5 group-hover:scale-110 transition-transform duration-300" />
@@ -565,14 +626,14 @@ export default function ContattiPage() {
                 }}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => window.open(info.href)}
+                onClick={() => handleContactClick(info.href)}
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${info.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
 
                 {/* Floating Sparkles */}
-                {hoveredCard === index && !isMobile && (
+                {hoveredCard === index && !isMobile && mounted && (
                   <>
                     {[...Array(5)].map((_, i) => (
                       <div
@@ -679,7 +740,7 @@ export default function ContattiPage() {
                     ))}
                   </div>
                   <p className="text-gray-300 leading-relaxed mb-6 italic group-hover:text-gray-200 transition-colors duration-300">
-                    "{testimonial.text}"
+                    &quot;{testimonial.text}&quot;
                   </p>
                   <div className="flex items-center">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-r from-white/20 to-white/10 flex items-center justify-center mr-4">
@@ -1073,7 +1134,7 @@ export default function ContattiPage() {
                 style={{
                   boxShadow: `0 20px 60px rgba(255,255,255,${0.2 + Math.abs(mousePosition.x) * 0.1})`,
                 }}
-                onClick={() => window.open("mailto:info@oneframeagency.com")}
+                onClick={handleEmailClick}
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <Mail className="mr-2 h-5 w-5 md:h-6 md:w-6 group-hover:scale-110 transition-transform duration-300" />
@@ -1089,7 +1150,7 @@ export default function ContattiPage() {
                 style={{
                   boxShadow: `0 20px 60px rgba(255,255,255,${0.1 + Math.abs(mousePosition.y) * 0.1})`,
                 }}
-                onClick={() => window.open("https://wa.me/393341960682")}
+                onClick={handleWhatsappClick}
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <MessageCircle className="mr-2 h-5 w-5 md:h-6 md:w-6 group-hover:scale-110 transition-transform duration-300" />
@@ -1104,7 +1165,7 @@ export default function ContattiPage() {
       </section>
 
       {/* Enhanced Footer */}
-      <Footer scrollY={scrollY}/>
+      <Footer />
 
       {/* CSS Animations */}
       <style jsx>{`

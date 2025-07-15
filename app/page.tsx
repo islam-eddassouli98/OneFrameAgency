@@ -103,7 +103,7 @@ export default function HomePage() {
         <PortfolioSection scrollY={scrollY} isVisible={isVisible} />
         <ServicesSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
         <CtaSection scrollY={scrollY} mousePosition={mousePosition} />
-        <Footer scrollY={scrollY} />
+        <Footer />
       </div>
     </div>
   )
