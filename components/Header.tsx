@@ -53,7 +53,7 @@ export default function Header({ scrollY, introComplete }: HeaderProps) {
               <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 ONEFRAME
               </span>
-              <div className="text-xs text-gray-400 tracking-[0.3em] font-light">ECOMMERCE STUDIO</div>
+              <div className="text-xs text-gray-400 tracking-[0.3em] font-light">ECOMMERCE AGENCY</div>
             </div>
           </Link>
 

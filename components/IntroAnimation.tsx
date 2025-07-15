@@ -28,7 +28,7 @@ export default function IntroAnimation() {
           </h1>
           <div className="text-gray-400 tracking-[0.5em] mt-6 opacity-0"
             style={{ fontSize: "clamp(0.8rem, 2vw, 1.2rem)", animation: "subtitleFade 1s ease-out 1s forwards" }}>
-            ECOMMERCE STUDIO
+            ECOMMERCE AGENCY
           </div>
         </div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">

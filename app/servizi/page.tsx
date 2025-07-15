@@ -62,7 +62,7 @@ export default function ServiziPage() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-4">
               ONEFRAME
             </h1>
-            <div className="text-sm md:text-base text-gray-400 tracking-[0.3em] font-light mb-6">ECOMMERCE STUDIO</div>
+            <div className="text-sm md:text-base text-gray-400 tracking-[0.3em] font-light mb-6">ECOMMERCE AGENCY</div>
           </div>
 
           {/* Coming Soon Message */}
