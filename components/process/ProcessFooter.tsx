@@ -1,0 +1,1 @@
+// Copiato dal canvas, già aggiornato
