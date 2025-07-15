@@ -304,7 +304,7 @@ export default function ContattiPage() {
   if (!mounted) {
     return (
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
-        <Header scrollY={0} introComplete={true} />
+        <Header introComplete={true} />
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-black text-white mb-4">CONTATTACI</h1>
@@ -374,7 +374,7 @@ export default function ContattiPage() {
       )}
 
       {/* Header */}
-      <Header scrollY={scrollY} introComplete={true} />
+      <Header introComplete={true} />
 
       {/* Hero Section with Enhanced Animations */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">

@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Camera, Menu, X } from "lucide-react"
 
 interface HeaderProps {
-  scrollY: number
   introComplete: boolean
 }
 
-export default function Header({ scrollY, introComplete }: HeaderProps) {
+export default function Header({ introComplete }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {

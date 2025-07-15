@@ -29,7 +29,7 @@ export default function StatsSection({ scrollY, mousePosition, isVisible }: Stat
                 isVisible.stats ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
               }`}
               style={{
-                transform: `translateY(${isVisible.stats ? scrollY * 0.05 * (index + 1) : 20}px)
+                transform: `translateY(${isVisible.stats ? scrollY * 0.008 * (index + 1) : 20}px)
                   rotateY(${mousePosition.x * 5}deg)
                   rotateX(${mousePosition.y * 3}deg)`,
                 transformStyle: "preserve-3d",

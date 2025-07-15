@@ -12,7 +12,6 @@ import Header from "@/components/Header"
 export default function ServiziPage() {
   const [email, setEmail] = useState("")
   const [isSubscribed, setIsSubscribed] = useState(false)
-  const [scrollY] = useState(0)
 
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -27,7 +26,7 @@ export default function ServiziPage() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
       {/* Header */}
-      <Header scrollY={scrollY} introComplete={true} />
+      <Header introComplete={true} />
 
       {/* Main Coming Soon Section */}
       <section className="min-h-screen flex items-center justify-center relative">

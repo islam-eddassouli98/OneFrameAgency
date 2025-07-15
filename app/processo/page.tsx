@@ -243,7 +243,7 @@ export default function ProcessoPage() {
       )}
 
       {/* Header */}
-      <Header scrollY={scrollY} introComplete={true} />
+      <Header  introComplete={true} />
 
 
       {/* Hero Section */}

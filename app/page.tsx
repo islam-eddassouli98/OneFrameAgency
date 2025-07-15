@@ -92,15 +92,15 @@ export default function HomePage() {
         className={`transition-all duration-1000 ${introComplete ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       >
         <AnimatedCursor mousePosition={mousePosition} heroInView={heroInView} />
-        <Header scrollY={scrollY} introComplete={introComplete} />
+        <Header introComplete={introComplete} />
         <HeroSection
           ref={heroRef}
           scrollY={scrollY}
           mousePosition={mousePosition}
           introComplete={introComplete}
         />
-        <StatsSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
         <PortfolioSection scrollY={scrollY} isVisible={isVisible} />
+        <StatsSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
         <ServicesSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
         <CtaSection scrollY={scrollY} mousePosition={mousePosition} />
         <Footer />
