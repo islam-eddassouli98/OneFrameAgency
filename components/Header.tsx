@@ -118,7 +118,7 @@ export default function Header({ introComplete }: HeaderProps) {
         {navLinks.map((item) => (
           <Link
             key={item}
-            href={`#${item.toLowerCase()}`}
+            href={`${item.toLowerCase()}`}
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-medium tracking-wide text-white/90 hover:text-white transition"
           >
