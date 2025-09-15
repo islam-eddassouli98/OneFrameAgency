@@ -189,7 +189,7 @@ export default function ServicesPage() {
               </h2>
               <p className="text-xl text-gray-300 mb-8 text-pretty">
                 Il tuo portale riservato per gestire tutto il flusso di lavoro fotografico. Dalla revisione
-                all'approvazione, tutto in un unico posto.
+                all &apos; approvazione, tutto in un unico posto.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6 mb-8">
