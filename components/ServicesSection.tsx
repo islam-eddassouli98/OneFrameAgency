@@ -15,26 +15,23 @@ export default function ServicesSection({ scrollY, mousePosition, isVisible }: S
         icon: <Package className="h-12 w-12" />,
         title: "PRODUCT PHOTOGRAPHY",
         description:
-          "Foto prodotto su sfondo bianco, lifestyle e 360°. Ottimizzate per Amazon, Shopify e tutti gli ecommerce.",
+          "Still-life,ambientate o 360°, ottimizzate per qualsiasi marketplace e piattaforma e-commerce.",
         features: ["Sfondo bianco professionale", "Lifestyle shots", "Foto 360° interattive", "Ritocco avanzato"],
-        price: "Da €25/prodotto",
         gradient: "from-blue-500/10 to-purple-500/10",
       },
       {
         icon: <Zap className="h-12 w-12" />,
         title: "SHOOTING EXPRESS",
         description:
-          "Servizio rapido per cataloghi estesi. Fino a 50 prodotti al giorno con consegna in 24h.",
-        features: ["Setup multipli", "Consegna 24h", "Batch processing", "Naming automatico"],
-        price: "Da €15/prodotto",
+          "Servizio express per grandi volumi. Consegna rapida garantita,ideale per lanci,restock o collezioni last-minute",
+        features: ["Setup multipli attivi", "Consegna 24h", "Ottimizzazione batch automatica"],
         gradient: "from-yellow-500/10 to-orange-500/10",
       },
       {
         icon: <TrendingUp className="h-12 w-12" />,
         title: "CONVERSION OPTIMIZATION",
-        description: "Analisi e ottimizzazione delle foto per massimizzare le conversioni del tuo store.",
+        description: "Foto che fanno vendere.E vendere meglio",
         features: ["A/B testing visivo", "Analisi performance", "Ottimizzazione SEO", "Report dettagliati"],
-        price: "Da €500/progetto",
         gradient: "from-green-500/10 to-emerald-500/10",
       },
     ]
@@ -90,9 +87,9 @@ export default function ServicesSection({ scrollY, mousePosition, isVisible }: S
                       </li>
                     ))}
                   </ul>
-                  <div className="text-xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" style={{ transform: `translateZ(10px)` }}>
+                  {/* <div className="text-xl font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" style={{ transform: `translateZ(10px)` }}>
                     {service.price}
-                  </div>
+                  </div> */}
                   <Button variant="outline" className="w-full border-white/30 text-white hover:bg-white hover:text-black bg-transparent transition-all duration-300 hover:scale-105" style={{ transform: `translateZ(15px)` }}>
                     RICHIEDI PREVENTIVO
                   </Button>

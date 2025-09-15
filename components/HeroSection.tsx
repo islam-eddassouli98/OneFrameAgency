@@ -27,7 +27,7 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mou
             style={{ boxShadow: `0 0 30px rgba(255,255,255,${0.1 + Math.abs(mousePosition.x) * 0.1})` }}
           >
             <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
-            ECOMMERCE PHOTOGRAPHY STUDIO
+            ECOMMERCE PHOTOGRAPHY AGENCY
           </Badge>
         </div>
 
