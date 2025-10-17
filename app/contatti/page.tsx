@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { useHydration } from "@/lib/use-hydration"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -72,7 +73,7 @@ export default function ContattiPage() {
       icon: <Phone className="h-6 w-6" />,
       title: "TELEFONO",
       value: "+39 334 196 0682",
-      href: "tel:+393341960682",
+      href: "tel:+39 334 196 0682",
       description: "Lun-Ven 9:00-18:00",
       color: "from-green-500/20 to-emerald-500/20",
       bgGradient: "radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.15) 0%, transparent 70%)",
@@ -229,9 +230,16 @@ export default function ContattiPage() {
     }
   }, [typedText, currentTextIndex, isMobile, windowSize.width, windowSize.height])
 
-  const getParallaxTransform = (factor: number, index = 0) => {
-    if (isMobile || !mounted) return "translateY(0px)"
-    return `translateY(${scrollY * factor * (index + 1)}px)`
+  const isHydrated = useHydration()
+  
+  const getParallaxTransform = (factor: number, index = 0, maxOffset = 100) => {
+    if (isMobile || !mounted || !isHydrated) return "translateY(0px)"
+    
+    // Calcola l'offset del parallax con limiti dinamici
+    const rawOffset = scrollY * factor * (index + 1)
+    const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, rawOffset))
+    
+    return `translateY(${clampedOffset}px)`
   }
 
   const getMouseTransform = (xFactor = 0, yFactor = 0) => {
@@ -429,7 +437,7 @@ export default function ContattiPage() {
           <div
             className="absolute top-1/2 left-1/4 opacity-5"
             style={{
-              transform: `${getParallaxTransform(0.05)} rotate(${scrollY * 0.02}deg)`,
+              transform: `${getParallaxTransform(0.05, 0, 50)} rotate(${scrollY * 0.02}deg)`,
               animation: "float 6s ease-in-out infinite",
             }}
           >
@@ -438,7 +446,7 @@ export default function ContattiPage() {
           <div
             className="absolute top-1/3 right-1/3 opacity-5"
             style={{
-              transform: `${getParallaxTransform(0.08)} rotate(${-scrollY * 0.03}deg)`,
+              transform: `${getParallaxTransform(0.08, 0, 60)} rotate(${-scrollY * 0.03}deg)`,
               animation: "float 8s ease-in-out infinite reverse",
             }}
           >
@@ -447,7 +455,7 @@ export default function ContattiPage() {
           <div
             className="absolute bottom-1/3 left-1/5 opacity-5"
             style={{
-              transform: `${getParallaxTransform(0.06)} rotate(${scrollY * 0.025}deg)`,
+              transform: `${getParallaxTransform(0.06, 0, 40)} rotate(${scrollY * 0.025}deg)`,
               animation: "float 7s ease-in-out infinite",
             }}
           >
@@ -459,7 +467,7 @@ export default function ContattiPage() {
           <div
             className="mb-6 md:mb-8 transform transition-all duration-1000 ease-out"
             style={{
-              transform: getParallaxTransform(0.05),
+              transform: getParallaxTransform(0.05, 0, 30),
               opacity: Math.max(0, 1 - scrollY * 0.002),
             }}
           >
@@ -478,7 +486,7 @@ export default function ContattiPage() {
           <div
             className="space-y-4 md:space-y-6 transform transition-all duration-1000 ease-out"
             style={{
-              transform: getParallaxTransform(0.03),
+              transform: getParallaxTransform(0.03, 0, 20),
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
@@ -526,7 +534,7 @@ export default function ContattiPage() {
           <div
             className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mt-8 md:mt-12 px-4"
             style={{
-              transform: getParallaxTransform(-0.02),
+              transform: getParallaxTransform(-0.02, 0, 25),
               opacity: Math.max(0, 1 - scrollY * 0.0015),
             }}
           >
@@ -567,7 +575,7 @@ export default function ContattiPage() {
           <div
             className="flex items-center space-x-2 text-gray-400 text-sm animate-pulse"
             style={{
-              transform: getParallaxTransform(0.02),
+              transform: getParallaxTransform(0.02, 0, 15),
             }}
           >
             <Coffee className="h-4 w-4" />
@@ -578,7 +586,7 @@ export default function ContattiPage() {
           <div
             className="flex items-center space-x-2 text-gray-400 text-sm animate-pulse"
             style={{
-              transform: getParallaxTransform(0.03),
+              transform: getParallaxTransform(0.03, 0, 20),
               animationDelay: "1s",
             }}
           >
@@ -616,7 +624,7 @@ export default function ContattiPage() {
                   isVisible[`contact-card-${index}`] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                 }`}
                 style={{
-                  transform: `${getParallaxTransform(0.01, index)} rotateY(${mousePosition.x * 1}deg) ${
+                  transform: `${getParallaxTransform(0.01, index, 15)} rotateY(${mousePosition.x * 1}deg) ${
                     hoveredCard === index ? "scale(1.05)" : "scale(1)"
                   }`,
                   transformStyle: "preserve-3d",
@@ -697,7 +705,7 @@ export default function ContattiPage() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            transform: getParallaxTransform(0.08),
+            transform: getParallaxTransform(0.08, 0, 60),
             backgroundImage: `
               radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
               radial-gradient(circle at 75% 75%, white 1px, transparent 1px)
@@ -730,7 +738,7 @@ export default function ContattiPage() {
                 }`}
                 style={{
                   transitionDelay: `${index * 200}ms`,
-                  transform: getParallaxTransform(0.01, index),
+                  transform: getParallaxTransform(0.01, index, 12),
                 }}
               >
                 <CardContent className="p-0 relative z-10">
@@ -768,7 +776,7 @@ export default function ContattiPage() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            transform: getParallaxTransform(0.1),
+            transform: getParallaxTransform(0.1, 0, 80),
             backgroundImage: `
               radial-gradient(circle at 30% 40%, white 2px, transparent 2px),
               radial-gradient(circle at 70% 80%, white 1px, transparent 1px)
@@ -851,7 +859,7 @@ export default function ContattiPage() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
-                        placeholder="+39 123 456 7890"
+                        placeholder="+39 334 196 0682"
                       />
                     </div>
                     <div className="group">
@@ -1010,7 +1018,7 @@ export default function ContattiPage() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            transform: getParallaxTransform(0.15),
+            transform: getParallaxTransform(0.15, 0, 100),
             backgroundImage: `
               linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%), 
               linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%)
@@ -1066,7 +1074,7 @@ export default function ContattiPage() {
                 }`}
                 style={{
                   transitionDelay: `${index * 200}ms`,
-                  transform: getParallaxTransform(0.02, index),
+                  transform: getParallaxTransform(0.02, index, 20),
                 }}
               >
                 <div className="relative">
@@ -1102,7 +1110,7 @@ export default function ContattiPage() {
             background: isMobile
               ? "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%)"
               : `radial-gradient(circle at ${50 + mousePosition.x * 20}% ${50 + mousePosition.y * 20}%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 30%, transparent 70%)`,
-            transform: getParallaxTransform(0.08),
+            transform: getParallaxTransform(0.08, 0, 50),
             transition: "background 0.3s ease-out",
           }}
         />

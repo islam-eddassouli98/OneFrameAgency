@@ -1,5 +1,6 @@
 "use client"
 import React from "react"
+import { useHydration } from "@/lib/use-hydration"
 
 interface AnimatedCursorProps {
   mousePosition: { x: number; y: number }
@@ -7,7 +8,10 @@ interface AnimatedCursorProps {
 }
 
 export default function AnimatedCursor({ mousePosition, heroInView }: AnimatedCursorProps) {
-  if (typeof window === "undefined") return null
+  const isHydrated = useHydration()
+
+  if (!isHydrated || typeof window === "undefined") return null
+
   return (
     <div
       className="fixed w-8 h-8 pointer-events-none z-50 transition-all duration-300 ease-out"

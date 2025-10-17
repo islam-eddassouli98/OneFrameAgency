@@ -22,19 +22,39 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
-              Studio fotografico specializzato in ecommerce. Trasformiamo i tuoi prodotti in bestseller con foto che convertono.
+              Agenzia fotografica specializzato in ecommerce. Trasformiamo i tuoi prodotti in bestseller con foto che convertono.
             </p>
             <div className="flex space-x-4">
-              {[Instagram, Linkedin, Mail].map((Icon, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  size="icon"
-                  className="border-white/20 hover:bg-white hover:text-black bg-white/5 backdrop-blur-xl transition-all duration-300 hover:scale-110"
-                >
-                  <Icon className="h-5 w-5" />
-                </Button>
-              ))}
+              <Button
+                variant="outline"
+                size="icon"
+                className="border-white/20 hover:bg-white hover:text-black bg-white/5 backdrop-blur-xl transition-all duration-300 hover:scale-110"
+                asChild
+              >
+                <Link href="https://www.instagram.com/oneframeagency" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="border-white/20 hover:bg-white hover:text-black bg-white/5 backdrop-blur-xl transition-all duration-300 hover:scale-110"
+                asChild
+              >
+                <Link href="https://www.linkedin.com/company/oneframe-agency/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="border-white/20 hover:bg-white hover:text-black bg-white/5 backdrop-blur-xl transition-all duration-300 hover:scale-110"
+                asChild
+              >
+                <Link href="mailto:contact@oneframeagency.com">
+                  <Mail className="h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
 
@@ -59,15 +79,22 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-center hover:text-white transition-colors duration-300">
                 <Phone className="h-4 w-4 mr-3" />
-                +39 02 1234 5678
+                +39 3341960682
               </li>
               <li className="flex items-center hover:text-white transition-colors duration-300">
                 <Mail className="h-4 w-4 mr-3" />
-                hello@oneframeagency.com
+                contact@oneframeagency.com
               </li>
               <li className="flex items-center hover:text-white transition-colors duration-300">
                 <ShoppingBag className="h-4 w-4 mr-3" />
-                Milano, Italia
+                <Link 
+                  href="https://maps.app.goo.gl/vffR7MtS67QmSZ4h9?g_st=ipc" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  San Marcellino (CE), Italia
+                </Link>
               </li>
             </ul>
           </div>

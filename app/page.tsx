@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from "react"
+import { useHydration } from "@/lib/use-hydration"
 import LoadingScreen from "@/components/LoadingScreen"
 import IntroAnimation from "@/components/IntroAnimation"
 import AnimatedCursor from "@/components/AnimatedCursor"
@@ -23,6 +24,8 @@ export default function HomePage() {
   const [introComplete, setIntroComplete] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
   const [heroInView, setHeroInView] = useState(false)
+  
+  const isHydrated = useHydration()
 
   useEffect(() => {
     const loadingInterval = setInterval(() => {
@@ -89,7 +92,7 @@ export default function HomePage() {
       {isLoading && <LoadingScreen loadingProgress={loadingProgress} />}
       {!isLoading && !introComplete && <IntroAnimation />}
       <div
-        className={`transition-all duration-1000 ${introComplete ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`transition-all duration-1000 ${introComplete && isHydrated ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       >
         <AnimatedCursor mousePosition={mousePosition} heroInView={heroInView} />
         <Header introComplete={introComplete} />

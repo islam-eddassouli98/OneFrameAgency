@@ -1,5 +1,6 @@
 "use client"
 
+import { useHydration } from "@/lib/use-hydration"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -191,10 +192,17 @@ export default function ProcessoPage() {
     }
   }, [isMobile])
 
+  const isHydrated = useHydration()
+  
   // Safe transform calculations with fallbacks
-  const getParallaxTransform = (factor: number, index = 0) => {
-    if (isMobile) return "translateY(0px)" // Disable parallax on mobile
-    return `translateY(${scrollY * factor * (index + 1)}px)`
+  const getParallaxTransform = (factor: number, index = 0, maxOffset = 100) => {
+    if (isMobile || !isHydrated) return "translateY(0px)" // Disable parallax on mobile
+    
+    // Calcola l'offset del parallax con limiti dinamici
+    const rawOffset = scrollY * factor * (index + 1)
+    const clampedOffset = Math.max(-maxOffset, Math.min(maxOffset, rawOffset))
+    
+    return `translateY(${clampedOffset}px)`
   }
 
   const getMouseTransform = (xFactor = 0, yFactor = 0) => {
@@ -291,7 +299,7 @@ export default function ProcessoPage() {
           <div
             className="mb-6 md:mb-8 transform transition-all duration-1000 ease-out"
             style={{
-              transform: getParallaxTransform(0.05),
+              transform: getParallaxTransform(0.05, 0, 30),
               opacity: Math.max(0, 1 - scrollY * 0.002),
             }}
           >
@@ -307,7 +315,7 @@ export default function ProcessoPage() {
           <div
             className="space-y-4 md:space-y-6 transform transition-all duration-1000 ease-out"
             style={{
-              transform: getParallaxTransform(0.03),
+              transform: getParallaxTransform(0.03, 0, 20),
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
@@ -476,7 +484,7 @@ export default function ProcessoPage() {
                       <div
                         className={`${index % 2 === 0 ? "" : "lg:col-start-2"} transform transition-all duration-700`}
                         style={{
-                          transform: getParallaxTransform(0.01, index),
+                          transform: getParallaxTransform(0.01, index, 15),
                         }}
                       >
                         <div className="flex items-center mb-6">
@@ -534,7 +542,7 @@ export default function ProcessoPage() {
                       <div
                         className={`${index % 2 === 0 ? "" : "lg:col-start-1"} relative group`}
                         style={{
-                          transform: `${getParallaxTransform(0.005, index)} rotateY(${mousePosition.x * 1}deg)`,
+                          transform: `${getParallaxTransform(0.005, index, 10)} rotateY(${mousePosition.x * 1}deg)`,
                           transformStyle: "preserve-3d",
                         }}
                       >
@@ -586,7 +594,7 @@ export default function ProcessoPage() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            transform: getParallaxTransform(0.1),
+            transform: getParallaxTransform(0.1, 0, 80),
             backgroundImage: `
               radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
               radial-gradient(circle at 30% 30%, white 1px, transparent 1px)
@@ -622,7 +630,7 @@ export default function ProcessoPage() {
                 }`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
-                  transform: getParallaxTransform(0.006, index),
+                  transform: getParallaxTransform(0.006, index, 12),
                 }}
               >
                 <div className="text-3xl md:text-5xl lg:text-6xl font-black mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300 bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
@@ -646,7 +654,7 @@ export default function ProcessoPage() {
             background: isMobile
               ? "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%)"
               : `radial-gradient(circle at ${50 + mousePosition.x * 20}% ${50 + mousePosition.y * 20}%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 30%, transparent 70%)`,
-            transform: getParallaxTransform(0.05),
+            transform: getParallaxTransform(0.05, 0, 40),
             transition: "background 0.3s ease-out",
           }}
         />
