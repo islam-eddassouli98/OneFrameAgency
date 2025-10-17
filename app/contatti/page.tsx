@@ -81,8 +81,8 @@ export default function ContattiPage() {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "STUDIO",
-      value: "Milano, Italia",
-      href: "#",
+      value: "San Marcellino (CE), Italia",
+      href: "https://maps.app.goo.gl/vffR7MtS67QmSZ4h9?g_st=ipc",
       description: "Visita su appuntamento",
       color: "from-purple-500/20 to-pink-500/20",
       bgGradient: "radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 70%)",
