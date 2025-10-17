@@ -6,14 +6,6 @@ import React from "react"
 export default function IntroAnimation() {
   return (
     <div className="fixed inset-0 z-[90] bg-black flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, white 1px, transparent 1px),
-                            radial-gradient(circle at 75% 75%, white 1px, transparent 1px)`,
-          backgroundSize: "100px 100px, 150px 150px",
-          animation: "pulse 3s ease-in-out infinite",
-        }}
-      />
       <div className="relative z-10 text-center">
         <div className="transform transition-all duration-2000 ease-out" style={{ animation: "logoIntro 2s ease-out forwards" }}>
           <div className="flex items-center justify-center mb-8">

@@ -151,7 +151,7 @@ export default function ProcessoPage() {
 
     const handleMouseMove = (e: MouseEvent) => {
       // Reduce mouse effects on mobile for performance
-      if (!isMobile) {
+      if (!isMobile && typeof window !== 'undefined' && window.innerWidth > 0 && window.innerHeight > 0) {
         setMousePosition({
           x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
           y: (e.clientY - window.innerHeight / 2) / window.innerHeight,
@@ -207,8 +207,13 @@ export default function ProcessoPage() {
   }
 
   const getMouseTransform = (xFactor = 0, yFactor = 0) => {
-    if (isMobile) return "translate(0px, 0px)"
-    return `translate(${mousePosition.x * xFactor}px, ${mousePosition.y * yFactor}px)`
+    if (isMobile || !isHydrated) return "translate(0px, 0px)"
+    
+    // Controlla per valori infiniti o NaN
+    const x = isFinite(mousePosition.x) ? mousePosition.x : 0
+    const y = isFinite(mousePosition.y) ? mousePosition.y : 0
+    
+    return `translate(${x * xFactor}px, ${y * yFactor}px)`
   }
 
 
@@ -259,17 +264,6 @@ export default function ProcessoPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Dynamic Background - Simplified for mobile */}
         <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 opacity-5 md:opacity-10"
-            style={{
-              transform: isMobile ? "translateY(0px)" : `translateY(${scrollY * 0.3}px)`,
-              backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
-              `,
-              backgroundSize: "60px 60px",
-            }}
-          />
 
           {/* Animated Orbs - Desktop Only */}
           {!isMobile && (
@@ -592,17 +586,6 @@ export default function ProcessoPage() {
 
       {/* Stats Section */}
       <section className="pt-24 md:pt-48 pb-16 md:pb-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            transform: getParallaxTransform(0.1, 0, 80),
-            backgroundImage: `
-              radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
-              radial-gradient(circle at 30% 30%, white 1px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px, 40px 40px",
-          }}
-        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div

@@ -181,7 +181,7 @@ export default function ContattiPage() {
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isMobile && typeof window !== 'undefined') {
+      if (!isMobile && typeof window !== 'undefined' && windowSize.width > 0 && windowSize.height > 0) {
         setMousePosition({
           x: (e.clientX - windowSize.width / 2) / windowSize.width,
           y: (e.clientY - windowSize.height / 2) / windowSize.height,
@@ -243,8 +243,13 @@ export default function ContattiPage() {
   }
 
   const getMouseTransform = (xFactor = 0, yFactor = 0) => {
-    if (isMobile || !mounted) return "translate(0px, 0px)"
-    return `translate(${mousePosition.x * xFactor}px, ${mousePosition.y * yFactor}px)`
+    if (isMobile || !mounted || !isHydrated) return "translate(0px, 0px)"
+    
+    // Controlla per valori infiniti o NaN
+    const x = isFinite(mousePosition.x) ? mousePosition.x : 0
+    const y = isFinite(mousePosition.y) ? mousePosition.y : 0
+    
+    return `translate(${x * xFactor}px, ${y * yFactor}px)`
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -360,7 +365,7 @@ export default function ContattiPage() {
 
       {/* Enhanced Floating Particles */}
       {!isMobile && mounted && (
-        <div className="fixed inset-0 pointer-events-none z-10">
+        <div className="fixed inset-0 pointer-events-none z-0">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
@@ -370,7 +375,7 @@ export default function ContattiPage() {
                 top: `${Math.random() * 100}%`,
                 width: `${2 + Math.random() * 4}px`,
                 height: `${2 + Math.random() * 4}px`,
-                background: `rgba(255,255,255,${0.1 + Math.random() * 0.2})`,
+                background: `rgba(255,255,255,${0.03 + Math.random() * 0.05})`,
                 animationDelay: `${Math.random() * 3}s`,
                 animationDuration: `${2 + Math.random() * 3}s`,
                 transform: getMouseTransform(8 + i * 0.5, 5 + i * 0.3),
@@ -388,43 +393,32 @@ export default function ContattiPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Dynamic Background with More Layers */}
         <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 opacity-5 md:opacity-10"
-            style={{
-              transform: isMobile ? "translateY(0px)" : `translateY(${scrollY * 0.3}px)`,
-              backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
-              `,
-              backgroundSize: "80px 80px",
-            }}
-          />
 
           {/* Multiple Animated Orbs */}
           {!isMobile && mounted && (
             <>
               <div
-                className="absolute top-1/4 left-1/3 w-96 h-96 rounded-full opacity-15"
+                className="absolute top-1/4 left-1/3 w-96 h-96 rounded-full opacity-5"
                 style={{
-                  background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
                   transform: `translate3d(${scrollY * 0.15 + mousePosition.x * 80}px, ${scrollY * 0.08 + mousePosition.y * 40}px, 0) scale(${1 + mousePosition.x * 0.1})`,
                   filter: "blur(40px)",
                   transition: "transform 0.3s ease-out",
                 }}
               />
               <div
-                className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full opacity-10"
+                className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full opacity-3"
                 style={{
-                  background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
                   transform: `translate3d(${-scrollY * 0.1 + mousePosition.x * -60}px, ${scrollY * 0.2 + mousePosition.y * -30}px, 0) scale(${1 + mousePosition.y * 0.1})`,
                   filter: "blur(30px)",
                   transition: "transform 0.3s ease-out",
                 }}
               />
               <div
-                className="absolute top-1/2 right-1/3 w-60 h-60 rounded-full opacity-8"
+                className="absolute top-1/2 right-1/3 w-60 h-60 rounded-full opacity-2"
                 style={{
-                  background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)",
                   transform: `translate3d(${scrollY * 0.12 + mousePosition.x * 50}px, ${-scrollY * 0.15 + mousePosition.y * 25}px, 0)`,
                   filter: "blur(35px)",
                   transition: "transform 0.3s ease-out",
@@ -702,17 +696,6 @@ export default function ContattiPage() {
 
       {/* Testimonials Carousel */}
       <section className="py-16 md:py-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            transform: getParallaxTransform(0.08, 0, 60),
-            backgroundImage: `
-              radial-gradient(circle at 25% 25%, white 2px, transparent 2px),
-              radial-gradient(circle at 75% 75%, white 1px, transparent 1px)
-            `,
-            backgroundSize: "120px 120px, 80px 80px",
-          }}
-        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div
@@ -773,17 +756,6 @@ export default function ContattiPage() {
 
       {/* Enhanced Contact Form */}
       <section id="contact-form" className="py-16 md:py-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            transform: getParallaxTransform(0.1, 0, 80),
-            backgroundImage: `
-              radial-gradient(circle at 30% 40%, white 2px, transparent 2px),
-              radial-gradient(circle at 70% 80%, white 1px, transparent 1px)
-            `,
-            backgroundSize: "100px 100px, 60px 60px",
-          }}
-        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -1015,18 +987,6 @@ export default function ContattiPage() {
 
       {/* Enhanced Stats Section */}
       <section className="py-16 md:py-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            transform: getParallaxTransform(0.15, 0, 100),
-            backgroundImage: `
-              linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%), 
-              linear-gradient(45deg, white 25%, transparent 25%, transparent 75%, white 75%)
-            `,
-            backgroundSize: "60px 60px",
-            backgroundPosition: "0 0, 30px 30px",
-          }}
-        />
 
         <div className="container mx-auto px-4 relative z-10">
           <div
@@ -1108,8 +1068,8 @@ export default function ContattiPage() {
           className="absolute inset-0"
           style={{
             background: isMobile
-              ? "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%)"
-              : `radial-gradient(circle at ${50 + mousePosition.x * 20}% ${50 + mousePosition.y * 20}%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 30%, transparent 70%)`,
+              ? "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%)"
+              : `radial-gradient(circle at ${50 + mousePosition.x * 20}% ${50 + mousePosition.y * 20}%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 30%, transparent 70%)`,
             transform: getParallaxTransform(0.08, 0, 50),
             transition: "background 0.3s ease-out",
           }}

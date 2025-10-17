@@ -52,7 +52,7 @@ export default function HomePage() {
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!introComplete) return
+      if (!introComplete || typeof window === 'undefined' || window.innerWidth <= 0 || window.innerHeight <= 0) return
       setMousePosition({
         x: (e.clientX - window.innerWidth / 2) / window.innerWidth,
         y: (e.clientY - window.innerHeight / 2) / window.innerHeight,
