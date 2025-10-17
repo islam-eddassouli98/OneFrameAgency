@@ -3,6 +3,7 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Phone } from "lucide-react"
+import Link from "next/link"
 
 interface CtaSectionProps {
   scrollY: number
@@ -34,15 +35,11 @@ export default function CtaSection({ scrollY, mousePosition }: CtaSectionProps) 
               Preventivo gratuito in 24h.
             </span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-white to-gray-200 text-black font-bold px-12 py-6 text-xl hover:scale-105">
-              INIZIA PROGETTO
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/20 text-white bg-white/5 backdrop-blur-xl font-bold px-12 py-6 text-xl hover:scale-105">
-              <span className="flex items-center">
-                <Phone className="mr-2 h-5 w-5" />
-                CHIAMA ORA
-              </span>
+          <div className="flex justify-center">
+            <Button size="lg" className="bg-gradient-to-r from-white to-gray-200 text-black font-bold px-12 py-6 text-xl hover:scale-105" asChild>
+              <Link href="/contatti#contact-form-card">
+                INIZIA PROGETTO
+              </Link>
             </Button>
           </div>
         </div>

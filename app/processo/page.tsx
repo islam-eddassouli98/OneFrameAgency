@@ -2,6 +2,7 @@
 
 import { useHydration } from "@/lib/use-hydration"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -681,22 +682,18 @@ export default function ProcessoPage() {
               <br />
               <span className="text-white font-semibold">Preventivo gratuito in 24h.</span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4">
+            <div className="flex justify-center px-4">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-white to-gray-200 text-black hover:from-gray-100 hover:to-white font-bold px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl group relative overflow-hidden transition-all duration-300 hover:scale-105"
+                asChild
               >
-                <span className="relative z-10 flex items-center justify-center">
-                  INIZIA PROGETTO
-                  <ArrowRight className="ml-2 h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 bg-white/5 backdrop-blur-xl font-bold px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl transition-all duration-300 hover:scale-105"
-              >
-                SCOPRI I PREZZI
+                <Link href="/contatti#contact-form-card">
+                  <span className="relative z-10 flex items-center justify-center">
+                    INIZIA PROGETTO
+                    <ArrowRight className="ml-2 h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </Link>
               </Button>
             </div>
           </div>

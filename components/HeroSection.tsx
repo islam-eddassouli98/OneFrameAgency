@@ -4,6 +4,7 @@ import React, { forwardRef } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 interface HeroSectionProps {
   scrollY: number
@@ -84,21 +85,27 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mou
             size="lg"
             className="bg-gradient-to-r from-white to-gray-200 text-black hover:from-gray-100 hover:to-white font-bold px-8 py-4 text-lg group relative overflow-hidden transition-all duration-300 hover:scale-105"
             style={{ boxShadow: `0 10px 40px rgba(255,255,255,${0.2 + Math.abs(mousePosition.x) * 0.1})` }}
+            asChild
           >
-            <span className="relative z-10 flex items-center">
-              VEDI PORTFOLIO
-              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Link href="/servizi">
+              <span className="relative z-10 flex items-center">
+                VEDI PORTFOLIO
+                <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Link>
           </Button>
           <Button
             size="lg"
             variant="outline"
             className="border-white/20 text-white hover:bg-white/10 bg-white/5 backdrop-blur-xl font-bold px-8 py-4 text-lg group relative overflow-hidden transition-all duration-300 hover:scale-105"
             style={{ boxShadow: `0 10px 40px rgba(255,255,255,${0.1 + Math.abs(mousePosition.y) * 0.1})` }}
+            asChild
           >
-            <span className="relative z-10">PREVENTIVO GRATUITO</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <Link href="/contatti#contact-form-card">
+              <span className="relative z-10">PREVENTIVO GRATUITO</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Link>
           </Button>
         </div>
       </div>

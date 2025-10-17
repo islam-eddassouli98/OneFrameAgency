@@ -80,8 +80,11 @@ export default function Header({ introComplete }: HeaderProps) {
               className={`bg-gradient-to-r from-white to-gray-200 text-black hover:from-gray-100 hover:to-white font-bold tracking-wide transition-all duration-700 delay-500 hover:scale-105 ${
                 introComplete ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
+              asChild
             >
-              INIZIA PROGETTO
+              <Link href="/contatti#contact-form-card">
+                INIZIA PROGETTO
+              </Link>
             </Button>
           </div>
 
@@ -129,8 +132,10 @@ export default function Header({ introComplete }: HeaderProps) {
 
       {/* CTA */}
       <div className="px-6 py-6 border-t border-white/10">
-        <Button className="w-full bg-gradient-to-r from-white to-gray-200 text-black font-bold">
-          INIZIA PROGETTO
+        <Button className="w-full bg-gradient-to-r from-white to-gray-200 text-black font-bold" asChild>
+          <Link href="/contatti#contact-form-card">
+            INIZIA PROGETTO
+          </Link>
         </Button>
       </div>
     </div>
