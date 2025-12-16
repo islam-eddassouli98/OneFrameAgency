@@ -1,7 +1,8 @@
 // === components/Footer.tsx ===
 "use client"
 import React from "react"
-import { Camera, Instagram, Linkedin, Mail, Phone, ShoppingBag } from "lucide-react"
+import Image from "next/image"
+import { Instagram, Linkedin, Mail, Phone, ShoppingBag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -12,17 +13,17 @@ export default function Footer() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <Camera className="h-10 w-10 text-white" />
-              <div>
-                <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  ONEFRAME
-                </span>
-                <div className="text-xs text-gray-400 tracking-[0.3em] font-light">ECOMMERCE AGENCY</div>
-              </div>
+            <div className="mb-6">
+              <Image
+                src="/logo.png"
+                alt="OneFrame Agency Logo"
+                width={140}
+                height={140}
+                className="h-20 w-auto md:h-24 object-contain"
+              />
             </div>
             <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
-              Agenzia fotografica specializzato in ecommerce. Trasformiamo i tuoi prodotti in bestseller con foto che convertono.
+              Qualità costante, standard elevati, pensati per vendere.
             </p>
             <div className="flex space-x-4">
               <Button

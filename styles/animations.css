@@ -93,3 +93,22 @@
     opacity: 0.3;
   }
 }
+
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.trusted-by-slider {
+  animation: scroll-logos 30s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+.trusted-by-slider:hover {
+  animation-play-state: paused;
+}

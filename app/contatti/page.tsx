@@ -31,6 +31,13 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { useEffect, useState } from "react"
 
+const typingTexts = [
+  "Trasformiamo i tuoi prodotti in bestseller",
+  "Shooting fotografici che convertono",
+  "Immagini che fanno vendere di più",
+  "Il tuo successo è la nostra passione",
+]
+
 export default function ContattiPage() {
   const [scrollY, setScrollY] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -41,23 +48,16 @@ export default function ContattiPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     company: "",
+    shootingType: "",
+    productCount: "",
     message: "",
-    budget: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
   const [mounted, setMounted] = useState(false)
-
-  const typingTexts = [
-    "Trasformiamo i tuoi prodotti in bestseller",
-    "Shooting fotografici che convertono",
-    "Immagini che fanno vendere di più",
-    "Il tuo successo è la nostra passione",
-  ]
 
   const contactInfo = [
     {
@@ -275,10 +275,10 @@ export default function ContattiPage() {
       setFormData({
         name: "",
         email: "",
-        phone: "",
         company: "",
+        shootingType: "",
+        productCount: "",
         message: "",
-        budget: "",
       })
     }, 3000)
   }
@@ -789,107 +789,112 @@ export default function ContattiPage() {
 
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="relative z-10 space-y-6 md:space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="group">
-                      <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                        NOME COMPLETO *
-                      </label>
-                      <Input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
-                        placeholder="Il tuo nome"
-                      />
-                    </div>
-                    <div className="group">
-                      <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                        EMAIL *
-                      </label>
-                      <Input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
-                        placeholder="la-tua-email@esempio.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="group">
-                      <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                        TELEFONO
-                      </label>
-                      <Input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
-                        placeholder="+39 334 196 0682"
-                      />
-                    </div>
-                    <div className="group">
-                      <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                        AZIENDA
-                      </label>
-                      <Input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
-                        placeholder="Nome azienda"
-                      />
-                    </div>
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
+                      Nome e cognome *
+                    </label>
+                    <Input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
+                      placeholder="Il tuo nome e cognome"
+                    />
                   </div>
 
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                      BUDGET INDICATIVO
+                      Email *
+                    </label>
+                    <Input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
+                      placeholder="la-tua-email@esempio.com"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
+                      Brand / Azienda *
+                    </label>
+                    <Input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
+                      placeholder="Nome del brand o azienda"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
+                      Tipo di shooting *
                     </label>
                     <select
-                      name="budget"
-                      value={formData.budget}
+                      name="shootingType"
+                      value={formData.shootingType}
                       onChange={handleInputChange}
+                      required
                       className="w-full bg-white/5 border border-white/20 text-white rounded-md px-3 py-2 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
                     >
                       <option value="" className="bg-black">
-                        Seleziona budget
+                        Seleziona tipo di shooting
                       </option>
-                      <option value="500-1000" className="bg-black">
-                        €500 - €1.000
+                      <option value="still" className="bg-black">
+                        Still
                       </option>
-                      <option value="1000-2500" className="bg-black">
-                        €1.000 - €2.500
+                      <option value="ghost" className="bg-black">
+                        Ghost
                       </option>
-                      <option value="2500-5000" className="bg-black">
-                        €2.500 - €5.000
+                      <option value="on-model" className="bg-black">
+                        On-model
                       </option>
-                      <option value="5000+" className="bg-black">
-                        €5.000+
+                      <option value="mix" className="bg-black">
+                        Mix
                       </option>
                     </select>
                   </div>
 
                   <div className="group">
                     <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
-                      MESSAGGIO *
+                      Numero indicativo di prodotti *
+                    </label>
+                    <Input
+                      type="text"
+                      name="productCount"
+                      value={formData.productCount}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 hover:bg-white/8"
+                      placeholder="Es: 10, 20-30, 50+"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-300 mb-2 tracking-[0.1em] group-focus-within:text-white transition-colors duration-300">
+                      Messaggio libero
                     </label>
                     <Textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      required
                       rows={6}
                       className="bg-white/5 border-white/20 text-white placeholder-gray-400 focus:border-white/40 focus:bg-white/10 transition-all duration-300 resize-none hover:bg-white/8"
-                      placeholder="Descrivi il tuo progetto: quanti prodotti, che tipo di shooting, tempistiche..."
+                      placeholder="Aggiungi qualsiasi informazione aggiuntiva sul tuo progetto..."
                     />
+                  </div>
+
+                  <div className="text-center text-sm text-gray-400 space-y-2 pt-4">
+                    <p>Rispondiamo entro 24 ore lavorative</p>
+                    <p>Nessun impegno, solo una valutazione concreta del progetto</p>
                   </div>
 
                   <Button
@@ -909,7 +914,7 @@ export default function ContattiPage() {
                       ) : (
                         <>
                           <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                          INVIA MESSAGGIO
+                          INVIA RICHIESTA
                           <Sparkles className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                         </>
                       )}

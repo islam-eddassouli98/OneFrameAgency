@@ -3,6 +3,7 @@
 
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
+import Link from "next/link"
 import { Camera, Users, Palette, Video, MessageSquare, ArrowRight, Star, Play, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -327,14 +328,17 @@ export default function ServicesPage() {
               crescere il tuo business online.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="bg-white text-black hover:bg-gray-200 group">
-                INIZIA IL TUO PROGETTO
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="bg-white text-black hover:bg-gray-200 group" asChild>
+                <Link href="/contatti#contact-form-card">
+                  INIZIA IL TUO PROGETTO
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-gray-600 text-white hover:bg-gray-900 bg-transparent group hover:text-white"
+                onClick={() => window.open("tel:+393341960682")}
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 CONTATTACI

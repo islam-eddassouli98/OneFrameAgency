@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Camera, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 interface HeaderProps {
   introComplete: boolean
@@ -25,30 +26,24 @@ export default function Header({ introComplete }: HeaderProps) {
   return (
     <header className="fixed top-0 z-40 w-full">
       <div
-        className="backdrop-blur-2xl bg-black/20 border-b border-white/5"
+        className="backdrop-blur-2xl border-b border-white/5"
       >
-        <div className="container mx-auto px-4 lg:px-6 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-4 lg:px-6 h-24 md:h-28 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group relative">
+          <Link href="/" className="flex items-center group relative">
             <div
-              className="relative transition-transform duration-500 ease-out"
-            >
-              <Camera
-                className={`text-white group-hover:scale-110 transition-transform duration-300 ${
-                  introComplete ? "h-10 w-10" : "h-0 w-0"
-                }`}
-              />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-white to-gray-300 rounded-full animate-pulse" />
-            </div>
-            <div
-              className={`transition-all duration-500 ease-out ${
-                introComplete ? "opacity-100 transform-none" : "opacity-0 transform scale-0"
+              className={`relative transition-all duration-500 ease-out ${
+                introComplete ? "opacity-100" : "opacity-0"
               }`}
             >
-              <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                ONEFRAME
-              </span>
-              <div className="text-xs text-gray-400 tracking-[0.3em] font-light">ECOMMERCE AGENCY</div>
+              <Image
+                src="/logo.png"
+                alt="OneFrame Agency Logo"
+                width={140}
+                height={140}
+                className="h-16 w-auto md:h-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                priority
+              />
             </div>
           </Link>
 

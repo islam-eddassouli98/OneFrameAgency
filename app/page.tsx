@@ -7,6 +7,7 @@ import IntroAnimation from "@/components/IntroAnimation"
 import AnimatedCursor from "@/components/AnimatedCursor"
 import Header from "@/components/Header"
 import HeroSection from "@/components/HeroSection"
+import TrustedBySection from "@/components/TrustedBySection"
 import StatsSection from "@/components/StatsSection"
 import PortfolioSection from "@/components/PortfolioSection"
 import ServicesSection from "@/components/ServicesSection"
@@ -102,6 +103,7 @@ export default function HomePage() {
           mousePosition={mousePosition}
           introComplete={introComplete}
         />
+        <TrustedBySection />
         <PortfolioSection scrollY={scrollY} isVisible={isVisible} />
         <StatsSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
         <ServicesSection scrollY={scrollY} mousePosition={mousePosition} isVisible={isVisible} />
