@@ -37,7 +37,7 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mou
             transform: `translateY(${scrollY * 0.05}px)`,
             opacity: Math.max(0, 1 - scrollY * 0.001),
           }}>
-          <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tighter px-4 sm:px-3 md:px-2 break-words">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.95] tracking-tighter px-4 sm:px-4 md:px-6 lg:px-4 break-words">
             <span
               className="block transform transition-all duration-700 ease-out"
               style={{

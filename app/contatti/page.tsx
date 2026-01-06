@@ -464,7 +464,7 @@ export default function ContattiPage() {
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.9] tracking-tighter px-4 sm:px-3 md:px-2 break-words">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-black leading-[0.95] tracking-tighter px-4 sm:px-4 md:px-6 lg:px-4 break-words">
               <span
                 className="block bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
                 style={{
