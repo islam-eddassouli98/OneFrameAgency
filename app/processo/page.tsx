@@ -314,7 +314,7 @@ export default function ProcessoPage() {
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.85] tracking-tighter px-2">
               <span
                 className="block bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
                 style={{
@@ -374,7 +374,7 @@ export default function ProcessoPage() {
               isVisible["timeline-header"] ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-4 md:mb-8 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent px-2">
               PROCESSO
               <span className="block text-lg md:text-2xl lg:text-3xl text-gray-400 font-normal tracking-[0.1em] md:tracking-[0.2em] mt-2 md:mt-4">
                 6 step verso il successo
@@ -651,7 +651,7 @@ export default function ProcessoPage() {
               isVisible.cta ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8 tracking-tighter">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-4 md:mb-8 tracking-tighter px-2">
               <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
                 INIZIA IL TUO
               </span>

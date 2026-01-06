@@ -10,6 +10,7 @@ const logos = [
   "/north-sails-logo.png",
   "/trussardi-logo.png",
   "/Silvian Heach_idSsaWyj_Z_0.png",
+  "/roberto-cavalli.png",
 ]
 
 export default function TrustedBySection() {

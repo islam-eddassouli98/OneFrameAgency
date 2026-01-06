@@ -4,7 +4,7 @@
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import Link from "next/link"
-import { Camera, Users, Palette, Video, MessageSquare, ArrowRight, Star, Play, ChevronRight } from "lucide-react"
+import { Camera, Users, Palette, Video, MessageSquare, ArrowRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -22,11 +22,7 @@ export default function ServicesPage() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center text-white">
-            <div className="inline-flex items-center space-x-2 bg-gray-900/50 backdrop-blur-sm rounded-full px-4 py-2 mb-8 border border-gray-700">
-              <Star className="w-4 h-4 text-white" />
-              <span className="text-sm text-gray-300">Agenzia fotografica di fiducia per oltre 500+ brand</span>
-            </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 text-balance">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-balance px-2">
               Servizi Fotografici
               <span className="block text-white">per eCommerce</span>
             </h1>
@@ -38,14 +34,6 @@ export default function ServicesPage() {
               <Button size="lg" className="bg-white hover:bg-gray-200 text-black group">
                 Scopri i nostri servizi
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gray-600 text-white hover:bg-gray-900 group bg-transparent"
-              >
-                <Play className="w-4 h-4 mr-2" />
-                Guarda il portfolio
               </Button>
             </div>
           </div>

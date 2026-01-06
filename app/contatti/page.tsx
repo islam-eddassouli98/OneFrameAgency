@@ -121,26 +121,6 @@ export default function ContattiPage() {
     },
   ]
 
-  const testimonials = [
-    {
-      name: "Marco Rossi",
-      company: "Fashion Store",
-      text: "Incredibile! Le vendite sono aumentate del 180% dopo il loro shooting.",
-      rating: 5,
-    },
-    {
-      name: "Laura Bianchi",
-      company: "Beauty Brand",
-      text: "Professionalità e qualità eccezionali. Consiglio vivamente OneFrame!",
-      rating: 5,
-    },
-    {
-      name: "Andrea Verdi",
-      company: "Tech Company",
-      text: "Hanno trasformato i nostri prodotti in vere opere d'arte fotografiche.",
-      rating: 5,
-    },
-  ]
 
   useEffect(() => {
     // Marca il componente come montato
@@ -484,7 +464,7 @@ export default function ContattiPage() {
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.85] tracking-tighter px-2">
               <span
                 className="block bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
                 style={{
@@ -600,9 +580,9 @@ export default function ContattiPage() {
               isVisible["contact-info"] ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-4 md:mb-8 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent px-2">
               CONTATTACI
-              <span className="block text-lg md:text-2xl lg:text-3xl text-gray-400 font-normal tracking-[0.1em] md:tracking-[0.2em] mt-2 md:mt-4">
+              <span className="block text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-400 font-normal tracking-[0.1em] md:tracking-[0.2em] mt-2 md:mt-4">
                 Siamo qui per te ❤️
               </span>
             </h2>
@@ -694,66 +674,6 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      {/* Testimonials Carousel */}
-      <section className="py-16 md:py-32 relative overflow-hidden">
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            id="testimonials"
-            data-reveal
-            className={`text-center mb-12 md:mb-16 transform transition-all duration-1000 ease-out ${
-              isVisible.testimonials ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
-            }`}
-          >
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
-              COSA DICONO I CLIENTI
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                id={`testimonial-${index}`}
-                data-reveal
-                className={`bg-white/5 border-white/10 p-6 md:p-8 hover:bg-white/10 transition-all duration-700 group relative overflow-hidden transform ${
-                  isVisible[`testimonial-${index}`] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: `${index * 200}ms`,
-                  transform: getParallaxTransform(0.01, index, 12),
-                }}
-              >
-                <CardContent className="p-0 relative z-10">
-                  <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-300 leading-relaxed mb-6 italic group-hover:text-gray-200 transition-colors duration-300">
-                    &quot;{testimonial.text}&quot;
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-white/20 to-white/10 flex items-center justify-center mr-4">
-                      <span className="text-white font-bold text-lg">
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold">{testimonial.name}</h4>
-                      <p className="text-gray-400 text-sm">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Enhanced Contact Form */}
       <section id="contact-form" className="py-16 md:py-32 relative overflow-hidden">
 
@@ -766,9 +686,9 @@ export default function ContattiPage() {
                 isVisible["form-header"] ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
               }`}
             >
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent px-2">
                 RACCONTACI IL TUO PROGETTO
-                <Sparkles className="inline-block ml-4 h-8 w-8 md:h-12 md:w-12 text-yellow-400 animate-pulse" />
+                <Sparkles className="inline-block ml-2 md:ml-4 h-6 w-6 md:h-8 md:w-8 lg:h-12 lg:w-12 text-yellow-400 animate-pulse" />
               </h2>
               <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
                 Compila il form e riceverai un preventivo personalizzato entro 24 ore
@@ -948,9 +868,9 @@ export default function ContattiPage() {
               isVisible["faq-header"] ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent px-2">
               DOMANDE FREQUENTI
-              <span className="block text-lg md:text-xl text-gray-400 font-normal tracking-[0.1em] mt-2">
+              <span className="block text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 font-normal tracking-[0.1em] mt-2">
                 Tutto quello che devi sapere
               </span>
             </h2>
@@ -1001,7 +921,7 @@ export default function ContattiPage() {
               isVisible.stats ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 tracking-tighter bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent px-2">
               PERCHÉ SCEGLIERCI
             </h2>
           </div>
@@ -1088,12 +1008,12 @@ export default function ContattiPage() {
               isVisible["final-cta"] ? "translate-y-0 opacity-100" : "translate-y-10 md:translate-y-20 opacity-0"
             }`}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-8 tracking-tighter">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-4 md:mb-8 tracking-tighter px-2">
               <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
                 PRONTO A INIZIARE?
               </span>
               <br />
-              <span className="text-2xl md:text-3xl text-gray-400 font-normal">Il successo ti aspetta! 🚀</span>
+              <span className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-400 font-normal">Il successo ti aspetta! 🚀</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
               Contattaci oggi stesso e trasforma i tuoi prodotti in bestseller.

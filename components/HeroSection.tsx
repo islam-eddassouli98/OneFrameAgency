@@ -24,11 +24,11 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mou
           }}>
           <Badge
             variant="outline"
-            className="border-white/20 text-white bg-white/5 backdrop-blur-xl mb-6 px-8 py-3 text-sm tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
+            className="border-white/20 text-white bg-white/5 backdrop-blur-xl mb-6 px-4 md:px-8 py-2 md:py-3 text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
             style={{ boxShadow: `0 0 30px rgba(255,255,255,${0.1 + Math.abs(mousePosition.x) * 0.1})` }}
           >
-            <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
-            ECOMMERCE PHOTOGRAPHY AGENCY
+            <Sparkles className="w-3 h-3 md:w-4 md:h-4 mr-2 animate-pulse" />
+            <span className="whitespace-nowrap">ECOMMERCE PHOTOGRAPHY AGENCY</span>
           </Badge>
         </div>
 
@@ -37,7 +37,7 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollY, mou
             transform: `translateY(${scrollY * 0.05}px)`,
             opacity: Math.max(0, 1 - scrollY * 0.001),
           }}>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.85] tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter px-2">
             <span
               className="block transform transition-all duration-700 ease-out"
               style={{
