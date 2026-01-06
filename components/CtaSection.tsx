@@ -2,7 +2,6 @@
 "use client"
 import React from "react"
 import { Button } from "@/components/ui/button"
-import { Phone } from "lucide-react"
 import Link from "next/link"
 
 interface CtaSectionProps {
