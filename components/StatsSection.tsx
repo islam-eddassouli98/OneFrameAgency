@@ -12,7 +12,7 @@ interface StatsSectionProps {
 
 export default function StatsSection({ scrollY, mousePosition, isVisible }: StatsSectionProps) {
   const stats = [
-    { number: "2000+", label: "PRODOTTI FOTOGRAFATI", delay: 0 },
+    { number: "20000+", label: "PRODOTTI FOTOGRAFATI", delay: 0 },
     { number: "+150%", label: "AUMENTO CONVERSIONI", delay: 100 },
     { number: "24H", label: "CONSEGNA EXPRESS", delay: 200 },
     { number: "99%", label: "CLIENTI SODDISFATTI", delay: 300 },

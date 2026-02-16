@@ -271,11 +271,11 @@ export default function ServicesPage() {
             <Card className="group hover:shadow-xl transition-all duration-300 border-gray-800 bg-gray-900/50 backdrop-blur-sm">
               <CardHeader>
                 <div className="w-16 h-16 bg-gray-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <MessageSquare className="w-8 h-8 text-white" />
+                  <Camera className="w-8 h-8 text-white" />
                 </div>
-                <CardTitle className="text-xl text-white">Packshot Multilingua</CardTitle>
+                <CardTitle className="text-xl text-white">Produzione cataloghi eCommerce</CardTitle>
                 <CardDescription className="text-base text-gray-400">
-                  Contenuti localizzati per mercati internazionali
+                Realizzazione di grandi volumi di packshot con workflow ottimizzato e consegne rapide, pronti per la pubblicazione online
                 </CardDescription>
               </CardHeader>
               <CardContent>

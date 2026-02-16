@@ -101,7 +101,7 @@ export default function ContattiPage() {
   const faqs = [
     {
       question: "Quanto tempo serve per un progetto?",
-      answer: "Dipende dal numero di prodotti. Per 1-10 prodotti: 3-5 giorni. Per cataloghi più grandi: 1-2 settimane.",
+      answer: "Le tempistiche dipendono dal numero di prodotti e dalla complessità della produzione. Per cataloghi standard, i tempi di consegna sono generalmente di circa 1 settimana lavorativa.",
       icon: <Clock className="h-5 w-5" />,
     },
     {

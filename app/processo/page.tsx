@@ -38,10 +38,10 @@ export default function ProcessoPage() {
       title: "INVIO PRODOTTI",
       subtitle: "O consegna in sede",
       description:
-        "Invii i tuoi prodotti tramite corriere espresso o li consegni direttamente nel nostro studio. Ogni prodotto viene catalogato e preparato per il shooting.",
+        "Spedisci i tuoi prodotti tramite corriere espresso o consegnali direttamente nel nostro studio. Ogni pezzo sarà attentamente registrato, catalogato e preparato con cura per lo shooting.",
       icon: <Package className="h-6 w-6 md:h-8 md:w-8" />,
       details: [
-        "Ritiro gratuito in tutta Italia",
+        "Ritiro Merce",
         "Imballaggio sicuro e tracciato",
         "Catalogazione prodotti",
         "Controllo qualità iniziale",
@@ -314,7 +314,7 @@ export default function ProcessoPage() {
               opacity: Math.max(0, 1 - scrollY * 0.001),
             }}
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-black leading-[0.95] tracking-tighter px-4 sm:px-4 md:px-6 lg:px-4 break-words">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black leading-[0.85] tracking-tighter px-2">
               <span
                 className="block bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent"
                 style={{
