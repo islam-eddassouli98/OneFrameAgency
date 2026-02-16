@@ -63,8 +63,8 @@ export default function ContattiPage() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "EMAIL",
-      value: "info@oneframeagency.com",
-      href: "mailto:info@oneframeagency.com",
+      value: "contact@oneframeagency.com",
+      href: "mailto:contact@oneframeagency.com",
       description: "Rispondiamo entro 2 ore",
       color: "from-blue-500/20 to-cyan-500/20",
       bgGradient: "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%)",
@@ -277,7 +277,7 @@ export default function ContattiPage() {
 
   const handleEmailClick = () => {
     if (typeof window !== 'undefined') {
-      window.open("mailto:info@oneframeagency.com")
+      window.open("mailto:contact@oneframeagency.com")
     }
   }
 
