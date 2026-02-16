@@ -282,15 +282,17 @@ export default function ServicesPage() {
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-sm text-gray-300">Adattamento per mercati locali</span>
+                    <span className="text-sm text-gray-300">Adattamento per marketplace e canali di vendita
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-sm text-gray-300">Packaging multilingua</span>
+                    <span className="text-sm text-gray-300">Gestione varianti e aggiornamenti di catalogo
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-sm text-gray-300">Conformità normative locali</span>
+                    <span className="text-sm text-gray-300">File ottimizzati e pronti per la pubblicazione</span>
                   </li>
                 </ul>
                 <Button
